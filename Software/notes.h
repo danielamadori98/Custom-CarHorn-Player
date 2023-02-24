@@ -1,7 +1,3 @@
-/*************************************************
- * Public Constants Lista note con frequenza associata
- *************************************************/
-
 #define NOTE_B0  31
 #define NOTE_C1  33
 #define NOTE_CS1 35
