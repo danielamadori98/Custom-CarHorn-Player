@@ -1,0 +1,142 @@
+{
+  "uuid": "cdad0c8c36f9b566512cc7098a14f119",
+  "path": "Offline/Circuito%20Clacson",
+  "name": "Circuito Clacson",
+  "content": "",
+  "created_at": "2023-02-23 22:48:19",
+  "updated_at": "2023-02-23 23:48:17",
+  "stick": "",
+  "documents": [
+    {
+      "uuid": "044697d52f58206c76e343e9820e776a",
+      "title": "Sheet_1",
+      "description": "",
+      "docType": "1",
+      "master": "fcdf4352e2a4aeca388f0e815ac3fb78",
+      "thumb": "/images/thumb-default.png",
+      "components": {
+        "63bb41bccee84e619bb46649b8a5b7d4": 1,
+        "deb85418cfeb4997827f4cadac862a3b": 1,
+        "a103d5f71ff1484c87dfbb7ed481a298": 1,
+        "b0248eb51e084227889f2cb84eab79c4": 1,
+        "0564e17286e943d4a7c722da7150599f": 2,
+        "16bca305655e4d1ebab3a45d652b39ee": 1,
+        "a7a0e276dadd4f8097422d2afc2e1b9c": 1
+      },
+      "BOM": [
+        [
+          "Value",
+          "Quantity",
+          "Package",
+          "Components",
+          "CustomPara"
+        ],
+        [
+          "100uF",
+          1,
+          "CASE-A_3216",
+          "C1",
+          {
+            "BOM_Supplier Part": "",
+            "BOM_Supplier": "",
+            "BOM_Manufacturer Part": "",
+            "puuid": "ce25118ef0b041b8a773e71ca28ae65d",
+            "uuid": "a7a0e276dadd4f8097422d2afc2e1b9c"
+          }
+        ],
+        [
+          "1N4007",
+          1,
+          "1N4007",
+          "D1",
+          {
+            "BOM_Manufacturer Part": "",
+            "puuid": "6f2ddda475c84c778510e5c1778cf603",
+            "uuid": "16bca305655e4d1ebab3a45d652b39ee"
+          }
+        ],
+        [
+          "MORSETTO 2 PIN",
+          2,
+          "MORSETTO 2 PIN",
+          "M1,M2",
+          {
+            "BOM_Manufacturer": "",
+            "BOM_Manufacturer Part": "",
+            "BOM_Supplier Part": "",
+            "BOM_Supplier": "",
+            "puuid": "bb7efbed87dd458fb3f763f4e2439c17",
+            "uuid": "0564e17286e943d4a7c722da7150599f"
+          }
+        ],
+        [
+          "IRF540N",
+          1,
+          "TO-220AB-3_L10.4-W4.6-P2.54-L",
+          "Q1",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Supplier Part": "C693382",
+            "BOM_Manufacturer": "VBsemi(微碧)",
+            "BOM_Manufacturer Part": "IRF540N-VB",
+            "BOM_JLCPCB Part Class": "Extended Part",
+            "puuid": "71aebd58c7824830842a92f8ee64b06a",
+            "uuid": "a103d5f71ff1484c87dfbb7ed481a298"
+          }
+        ],
+        [
+          "15k",
+          1,
+          "R0603",
+          "R1",
+          {
+            "BOM_Supplier Part": "",
+            "BOM_Supplier": "",
+            "BOM_Manufacturer Part": "",
+            "puuid": "398691f1f785460098bbe5ee6590333c",
+            "uuid": "b0248eb51e084227889f2cb84eab79c4"
+          }
+        ],
+        [
+          "ESP32-WROOM-32D-N16",
+          1,
+          "WIFIM-SMD_ESP32-WROOM-32D",
+          "U1",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Supplier Part": "C2973676",
+            "BOM_Manufacturer": "ESPRESSIF 乐鑫",
+            "BOM_Manufacturer Part": "ESP32-WROOM-32D-N16",
+            "puuid": "907f9cca58f5468786af28a81e624f5c",
+            "uuid": "63bb41bccee84e619bb46649b8a5b7d4"
+          }
+        ],
+        [
+          "UC3705N",
+          1,
+          "DIP-8_L9.8-W6.6-P2.54-LS7.6-BL",
+          "U2",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Supplier Part": "C206099",
+            "BOM_Manufacturer": "Texas Instruments",
+            "BOM_Manufacturer Part": "UC3705N",
+            "BOM_JLCPCB Part Class": "Extended Part",
+            "puuid": "d02bd24390b14704889edf7a144138dd",
+            "uuid": "deb85418cfeb4997827f4cadac862a3b"
+          }
+        ]
+      ],
+      "updateTime": 1677192497,
+      "createTime": 1677188899,
+      "histories": [],
+      "created_at": "2023-02-23 22:48:19",
+      "updated_at": "2023-02-23 23:48:17"
+    }
+  ],
+  "sort": [],
+  "title": "Circuito Clacson",
+  "foldername": "Circuito Clacson",
+  "schfilename": "Circuito Clacson.json",
+  "schfilemtime": 1677192497528
+}

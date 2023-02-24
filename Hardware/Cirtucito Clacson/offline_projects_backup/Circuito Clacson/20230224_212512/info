@@ -1,0 +1,241 @@
+{
+  "uuid": "cdad0c8c36f9b566512cc7098a14f119",
+  "path": "Offline/Circuito%20Clacson",
+  "name": "Circuito Clacson",
+  "content": "",
+  "created_at": "2023-02-23 22:48:19",
+  "updated_at": "2023-02-24 21:25:12",
+  "stick": "",
+  "documents": [
+    {
+      "uuid": "044697d52f58206c76e343e9820e776a",
+      "title": "Sheet_1",
+      "description": "",
+      "docType": "1",
+      "master": "",
+      "thumb": "/images/thumb-default.png",
+      "components": {
+        "a7a0e276dadd4f8097422d2afc2e1b9c": 1,
+        "0564e17286e943d4a7c722da7150599f": 4,
+        "16bca305655e4d1ebab3a45d652b39ee": 1,
+        "b0248eb51e084227889f2cb84eab79c4": 9,
+        "a103d5f71ff1484c87dfbb7ed481a298": 1,
+        "deb85418cfeb4997827f4cadac862a3b": 1,
+        "63bb41bccee84e619bb46649b8a5b7d4": 1,
+        "5aeeb357f19d46df9298e9843edbe1e7": 1,
+        "fd11c9e744c44aeab6011e8bd4c3ea86": 1,
+        "79891a4f79b145648609f47a4bceaf84": 1
+      },
+      "BOM": [
+        [
+          "Value",
+          "Quantity",
+          "Package",
+          "Components",
+          "CustomPara"
+        ],
+        [
+          "MORSETTO 2 PIN",
+          4,
+          "MORSETTO 2 PIN",
+          "ALIMENTAZIONE,BUZZER,CLACSON,OUTPUT_CLACSON",
+          {
+            "BOM_Manufacturer": "",
+            "BOM_Manufacturer Part": "",
+            "BOM_Supplier Part": "",
+            "BOM_Supplier": "",
+            "puuid": "bb7efbed87dd458fb3f763f4e2439c17",
+            "uuid": "0564e17286e943d4a7c722da7150599f"
+          }
+        ],
+        [
+          "100uF",
+          1,
+          "CASE-A_3216",
+          "C1",
+          {
+            "BOM_Supplier Part": "",
+            "BOM_Supplier": "",
+            "BOM_Manufacturer Part": "",
+            "puuid": "ce25118ef0b041b8a773e71ca28ae65d",
+            "uuid": "a7a0e276dadd4f8097422d2afc2e1b9c"
+          }
+        ],
+        [
+          "20nF",
+          1,
+          "C0603",
+          "C2",
+          {
+            "BOM_Supplier Part": "",
+            "BOM_Supplier": "",
+            "BOM_Manufacturer Part": "",
+            "puuid": "f8151fdc728a41ebbc304e11d39e5437",
+            "uuid": "fd11c9e744c44aeab6011e8bd4c3ea86"
+          }
+        ],
+        [
+          "1N4007",
+          1,
+          "1N4007",
+          "D1",
+          {
+            "BOM_Manufacturer Part": "",
+            "puuid": "6f2ddda475c84c778510e5c1778cf603",
+            "uuid": "16bca305655e4d1ebab3a45d652b39ee"
+          }
+        ],
+        [
+          "ENCODER",
+          1,
+          "CONNETTORE PIN HEADER MASCHIO A 5 POLI",
+          "ENCODER",
+          {
+            "BOM_Supplier": "RICCADONNA LUCIANO",
+            "BOM_Supplier Part": "CONNETTORE HEADER PIN MASCHIO A 5 POLI",
+            "BOM_Manufacturer": "Officine PADANE",
+            "BOM_Manufacturer Part": "CONNETTORE HEADER PIN MASCHIO A 5 POLI",
+            "BOM_JLCPCB Part Class": "Extended Part",
+            "puuid": "7fb1bf6e483842f69cba915cdc08d88f",
+            "uuid": "79891a4f79b145648609f47a4bceaf84"
+          }
+        ],
+        [
+          "IRF540N",
+          1,
+          "TO-220AB-3_L10.4-W4.6-P2.54-L",
+          "Q1",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Supplier Part": "C693382",
+            "BOM_Manufacturer": "VBsemi(微碧)",
+            "BOM_Manufacturer Part": "IRF540N-VB",
+            "BOM_JLCPCB Part Class": "Extended Part",
+            "puuid": "71aebd58c7824830842a92f8ee64b06a",
+            "uuid": "a103d5f71ff1484c87dfbb7ed481a298"
+          }
+        ],
+        [
+          "10k",
+          1,
+          "R0603",
+          "R1",
+          {
+            "BOM_Supplier Part": "",
+            "BOM_Supplier": "",
+            "BOM_Manufacturer Part": "",
+            "puuid": "398691f1f785460098bbe5ee6590333c",
+            "uuid": "b0248eb51e084227889f2cb84eab79c4"
+          }
+        ],
+        [
+          "200k",
+          7,
+          "R0603",
+          "R_LCD1,R_LCD2,R_LCD3,R_LCD4,R_LCD5,R_LCD6,R_LCD7",
+          {
+            "BOM_Supplier Part": "",
+            "BOM_Supplier": "",
+            "BOM_Manufacturer Part": "",
+            "puuid": "398691f1f785460098bbe5ee6590333c",
+            "uuid": "b0248eb51e084227889f2cb84eab79c4"
+          }
+        ],
+        [
+          "15k",
+          1,
+          "R0603",
+          "R_OUTPUT",
+          {
+            "BOM_Supplier Part": "",
+            "BOM_Supplier": "",
+            "BOM_Manufacturer Part": "",
+            "puuid": "398691f1f785460098bbe5ee6590333c",
+            "uuid": "b0248eb51e084227889f2cb84eab79c4"
+          }
+        ],
+        [
+          "ESP32-WROOM-32D-N16",
+          1,
+          "WIFIM-SMD_ESP32-WROOM-32D",
+          "U1",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Supplier Part": "C2973676",
+            "BOM_Manufacturer": "ESPRESSIF 乐鑫",
+            "BOM_Manufacturer Part": "ESP32-WROOM-32D-N16",
+            "puuid": "907f9cca58f5468786af28a81e624f5c",
+            "uuid": "63bb41bccee84e619bb46649b8a5b7d4"
+          }
+        ],
+        [
+          "UC3705N",
+          1,
+          "DIP-8_L9.8-W6.6-P2.54-LS7.6-BL",
+          "U2",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Supplier Part": "C206099",
+            "BOM_Manufacturer": "Texas Instruments",
+            "BOM_Manufacturer Part": "UC3705N",
+            "BOM_JLCPCB Part Class": "Extended Part",
+            "puuid": "d02bd24390b14704889edf7a144138dd",
+            "uuid": "deb85418cfeb4997827f4cadac862a3b"
+          }
+        ],
+        [
+          "LCD",
+          1,
+          "2MM 7PIN CONNECTOR",
+          "U3",
+          {
+            "BOM_Manufacturer": "",
+            "BOM_Manufacturer Part": "2MM7P",
+            "BOM_Supplier": "",
+            "BOM_Supplier Part": "2mm 7 PIN CONN",
+            "puuid": "dbd7ae4ff667477e9ee0c4e0e0f90264",
+            "uuid": "5aeeb357f19d46df9298e9843edbe1e7"
+          }
+        ]
+      ],
+      "updateTime": 1677270151,
+      "createTime": 1677188899,
+      "histories": [],
+      "created_at": "2023-02-23 22:48:19",
+      "updated_at": "2023-02-24 21:22:31"
+    },
+    {
+      "uuid": "ffb1bd4db75a215bc9a0bb5d5b19248a",
+      "puuid": "cdad0c8c36f9b566512cc7098a14f119",
+      "title": "PCB_Circuito Clacson",
+      "filename": "PCB_Circuito Clacson.json",
+      "description": "",
+      "docType": "3",
+      "master": "",
+      "thumb": "/images/thumb-default.png",
+      "components": {
+        "bb7efbed87dd458fb3f763f4e2439c17": 4,
+        "ce25118ef0b041b8a773e71ca28ae65d": 1,
+        "f8151fdc728a41ebbc304e11d39e5437": 1,
+        "6f2ddda475c84c778510e5c1778cf603": 1,
+        "71aebd58c7824830842a92f8ee64b06a": 1,
+        "398691f1f785460098bbe5ee6590333c": 9,
+        "907f9cca58f5468786af28a81e624f5c": 1,
+        "d02bd24390b14704889edf7a144138dd": 1,
+        "7fb1bf6e483842f69cba915cdc08d88f": 1,
+        "dbd7ae4ff667477e9ee0c4e0e0f90264": 1
+      },
+      "BOM": [],
+      "updateTime": 1677270312,
+      "createTime": 1677261161,
+      "histories": [],
+      "created_at": "2023-02-24 18:52:41",
+      "updated_at": "2023-02-24 21:25:12"
+    }
+  ],
+  "sort": [],
+  "title": "Circuito Clacson",
+  "foldername": "Circuito Clacson",
+  "schfilename": "Circuito Clacson.json",
+  "schfilemtime": 1677270151914
+}
