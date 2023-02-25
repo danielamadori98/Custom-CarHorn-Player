@@ -1,14 +1,13 @@
-class Diplay{
-	unsigned short segmentNumber = 7,
-					digitsNumber = 16;
+class Display{
+	#define SEGMENT_NUMBER 7
+	#define DIGITS_NUMBER 16
 
 	// Array per i pin dello schermo a 7 segmenti
-	
 	// La numerazione parte dal pin a fino alla g, dal segmento in alto e ruotando in senso orario
-	int sevSeg[segmentNumber] = {a, b, c, d, e, f, g};
+	// int sevSeg[SEGMENT_NUMBER] = {1, 2, 3, 4, 5, 6, 7};
 
 	// https://www.hacktronics.com/Tutorials/arduino-and-7-segment-led.html
-	byte seven_seg_digits[digitsNumber][segmentNumber] = {
+	byte digits[DIGITS_NUMBER][SEGMENT_NUMBER] = {
 		{ 1, 1, 1, 1, 1, 1, 0 }, // = 0
 		{ 0, 1, 1, 0, 0, 0, 0 }, // = 1
 		{ 1, 1, 0, 1, 1, 0, 1 }, // = 2
@@ -28,28 +27,35 @@ class Diplay{
 	};
 
 public:
+	
 	void write(unsigned short digit) {
-		if(digit > digitsNumber)
+		if(digit > DIGITS_NUMBER)
 			return;
 
-		for (unsigned short segCount = 0; segCount < segmentNumber; ++segCount)
-			digitalWrite(sevSeg[segCount], seven_seg_digits[digit][segCount]);
+		//for (unsigned short segCount = 0; segCount < segmentNumber; ++segCount)
+		//	digitalWrite(sevSeg[segCount], digitss[digit][segCount]);
 	}
 
-	void init(){
-		for(unsigned short i = 0; i < segmentNumber; i++)
-			pinMode(sevSeg[i], OUTPUT);
+	void loading(unsigned short repetNumber){
+		if(--repetNumber > 0)
+			loading(repetNumber);
 
 		// Serpentina iniziale
-		int snake[] = {a, b, g, e, d, c, g, f, a, b, g, e, d, c, g, f, a, b, g, e, d, c, g, f, a, b, g, e, d, c, g, f};
+		/*int snake[] = {a, b, g, e, d, c, g, f};
 
-		for(unsigned short i = 0; i < (sizeof(snake) / sizeof(snake[0])); i++) {
+		for(unsigned short i = 0; i < sizeof(snake) / sizeof(snake[0]); i++) {
 			digitalWrite(snake[i], HIGH);
 			delay(100);
 			digitalWrite(snake[i], LOW);
 		}
+		*/	
+	}
+
+	void init(){
+		//for(unsigned short i = 0; i < segmentNumber; i++)
+		//	pinMode(sevSeg[i], OUTPUT);
+
+		loading(3);
 	}
 
 };
-
-Display display;

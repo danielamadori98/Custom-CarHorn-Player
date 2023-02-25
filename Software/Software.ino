@@ -1,24 +1,19 @@
-#include "display.h"
-#include "playlist.h"
+#include "Menu.h"
 
 Menu menu;
-Playlist playlist;
 
 void setup() {
-  pinMode(GATE, OUTPUT);
-  digitalWrite(GATE, LOW);
-  pinMode(SWDX, INPUT);
-  pinMode(SWSX, INPUT);
-  display.init();
+	menu.init();
 }
 
-bool clacson_listner(){
-  return digitalRead(SWDX);
+bool clacson_listner(void){
+	return true; //return digitalRead("1");
+	//digitalWrite(GATE, LOW);
 }
 
 void loop() {
-  menu.chose();
+	menu.choose();
 
-  if(clacson_listner())
-	menu.run();
+	if(clacson_listner())
+		menu.run();
 }

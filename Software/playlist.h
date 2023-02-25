@@ -1,44 +1,55 @@
 #include "notes.h"
+#include <Arduino.h>
 
 #define MELODY_NUMBER 10
+#define GATE 0 // define the pin number for GATE
 
-class Playlist{
-	struct Melody{
-		int note[], noteDurations[];
-		unsigned short length;
-	};
 
-	Melody melodies[MELODY_NUMBER];
+class Melody{
+public:
+	unsigned short length;
+	int *note, *noteDuration;
 	
-	int pauseBetweenNotes = 0;
+	Melody(unsigned short length, int note[], int noteDuration[]){
+		this->note = new int[length];
+		this->noteDuration = new int[length];
+		this->length = length;
 
-	void play(Melody &melody) {
-	  for (int i = 0; i < melody.length; i++) {
-		tone(GATE, melody.note[i], melody.noteDuration[i]);
-		delay(pauseBetweenNotes);
-
-		noTone(GATE);
-	  }
+		for(unsigned short i = 0; i < length; i++){
+			this->note[i] = note[i];
+			this->noteDuration[i] = noteDuration[i];
+		}
 	}
+	Melody(){}
 
-
-void run(int actionNumber);
-	if(!clacson_listner())
-		return;
-
-	if (actionNumber == 0){// Clacson normale
-		while (digitalRead(SWDX))
-			digitalWrite(GATE, HIGH);
-	
-		digitalWrite(GATE, LOW);
-
-	}else if(actionNumber < MELODY_NUMBER)
-		play(melodies[actionNumber]);
-	
-	else//BL
-		bl();
-	
-  
-	delay(10);
+	void play(unsigned short speed, unsigned short pauseBetweenNotes){
+		for (int i = 0; i < length; i++) {
+			tone(GATE, note[i], noteDuration[i] * speed);
+			delay(pauseBetweenNotes);
+			noTone(GATE);
+	 	}
+	}
 };
 
+class Playlist{
+
+
+	unsigned short pauseBetweenNotes = 0;
+	double speed = 1;
+
+public:
+
+	Melody *melodies[];
+
+	void init();
+
+	void run(int actionNumber){
+		if (actionNumber == 0)// Clacson normal
+			digitalWrite(GATE, HIGH);
+
+		else if(actionNumber < MELODY_NUMBER)
+			melodies[actionNumber]->play(speed, pauseBetweenNotes);
+		
+		delay(10);
+	}
+};
