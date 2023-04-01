@@ -1,7 +1,25 @@
 #include "playlist.h"
 
-//Clacson corriera
-void Playlist::init(){
+
+void Player::play(unsigned short actionNumber){
+	if (actionNumber == 0)// Clacson normal
+		digitalWrite(GATE, HIGH);
+
+	else if(actionNumber < MELODY_NUMBER)
+		melodies[actionNumber]->play(speed, pauseBetweenNotes);
+	
+	delay(10);
+}
+
+bool Player::preview(unsigned short actionNumber){
+	if(actionNumber > MELODY_NUMBER)
+		return false;
+
+	return melodies[actionNumber]->preview(speed, pauseBetweenNotes);
+}
+
+
+void Player::init(){
 	melodies = new Melody[MELODY_NUMBER];
 
 	melodies[0] = new Melody(4,
