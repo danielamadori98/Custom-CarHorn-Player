@@ -1,2 +1,3 @@
 # Clacson-Arduino
-Suonare il clacson di una macchina tramite la funzione tone fornita da Arduino
+SW and HW for customization of a clacson.
+Clascon play melodies or play music using Bluetooth.
