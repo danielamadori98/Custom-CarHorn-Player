@@ -1,4 +1,3 @@
-
 class Encoder{
 	unsigned short value = 0;
 

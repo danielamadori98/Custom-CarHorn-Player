@@ -6,9 +6,6 @@ void setup() {
 	menu.init();
 }
 
-
 void loop() {
-	menu.choose();
-
 	menu.run();		
 }
