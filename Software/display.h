@@ -1,10 +1,14 @@
+#ifndef DISPLAY_H
+#define DISPLAY_H
+#pragma once
+
 class Display{
 	#define SEGMENT_NUMBER 7
 	#define DIGITS_NUMBER 17
 
 	// Array per i pin dello schermo a 7 segmenti
 	// La numerazione parte dal pin a fino alla g, dal segmento in alto e ruotando in senso orario
-	int sevSeg[SEGMENT_NUMBER] = {1, 2, 3, 4, 5, 6, 7};
+	int sevSeg[SEGMENT_NUMBER] = {1, 2, 3, 4, 5, 6, 7}; // range 8-14
 
 	// https://www.hacktronics.com/Tutorials/arduino-and-7-segment-led.html
 	byte digits[DIGITS_NUMBER][SEGMENT_NUMBER] = {
@@ -28,41 +32,13 @@ class Display{
 
 public:
 	
-	void write(unsigned short digit) {
-		if(digit > DIGITS_NUMBER)
-			turnOff();
-		else
-			for (unsigned short segCount = 0; segCount < SEGMENT_NUMBER; ++segCount)
-				digitalWrite(sevSeg[segCount], digits[digit][segCount]);
-	}
+	void write(unsigned short digit);
 
-	void loading(unsigned short repetNumber){
-		if(--repetNumber > 0)
-			loading(repetNumber);
+	void loading(unsigned short repetNumber);
 
-		//TODO
-		//Serpentina iniziale
-		/*int snake[] = {a, b, g, e, d, c, g, f};
+	void setup(void);
 
-		for(unsigned short i = 0; i < sizeof(snake) / sizeof(snake[0]); i++) {
-			digitalWrite(snake[i], HIGH);
-			delay(100);
-			digitalWrite(snake[i], LOW);
-		}
-		*/	
-	}
-
-	void init(){
-		for(unsigned short i = 0; i < SEGMENT_NUMBER; i++)
-			pinMode(sevSeg[i], OUTPUT);
-
-		loading(3);
-	}
-
-
-	void turnOff(void){
-		for (unsigned short segCount = 0; segCount < SEGMENT_NUMBER; ++segCount)
-			digitalWrite(sevSeg[segCount], 0);
-	}
-
+	void turnOff(void);
 };
+
+#endif

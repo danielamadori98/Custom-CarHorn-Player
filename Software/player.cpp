@@ -1,6 +1,5 @@
 #include "player.h"
 
-
 void Player::play(unsigned short actionNumber){
 	if(actionNumber < MELODY_NUMBER)
 		melodies[actionNumber]->play(speed, pauseBetweenNotes);
@@ -13,8 +12,7 @@ bool Player::preview(unsigned short actionNumber){
 	return melodies[actionNumber]->preview(speed, pauseBetweenNotes);
 }
 
-
-void Player::init(void){
+void Player::setup(void){
 	melodies[0] = new Melody(
 		{NOTE_G5, NOTE_F5, NOTE_E5, NOTE_F5},
 		{8,8,8,8});

@@ -1,9 +1,11 @@
-#include "Menu.h"
+#include "menu.h"
 
 Menu menu;
+extern Encoder encoder;
 
 void setup() {
-	menu.init();
+	menu.setup();
+	encoder.setup();
 }
 
 void loop() {

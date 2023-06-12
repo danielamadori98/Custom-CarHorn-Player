@@ -1,3 +1,7 @@
+#ifndef PLAYER_H
+#define PLAYER_H
+#pragma once
+
 #include "melody.h"
 
 #define MELODY_NUMBER 10
@@ -10,9 +14,11 @@ class Player{
 
 public:
 
-	void init(void);
+	void setup(void);
 
 	void play(unsigned short actionNumber);
 
 	bool preview(unsigned short actionNumber);
 };
+
+#endif

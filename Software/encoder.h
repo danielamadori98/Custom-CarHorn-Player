@@ -1,30 +1,21 @@
+#ifndef ENCODER_H
+#define ENCODER_H
+#pragma once
+
 class Encoder{
 	unsigned short value = 0;
-
-	unsigned short get(){
-		return 0;
-	}
+	int currentStateCLK, lastStateCLK;
 
 public:
-	unsigned short getValue(){
-		return value;
-	}
+	void setup();
 
-	bool valueListener(){
-		unsigned short value = get();
-		if(value == this->value)
-			return false;
+	unsigned int getValue(void);
 
-		this->value = value;
+	bool valueListener(void);
 
-		return true;
-	}
-
-	bool clickListener(){
-		return true;
-	}
-
+	bool clickListener(void);
 };
 
-Encoder encoder;
+extern Encoder encoder;
 
+#endif
