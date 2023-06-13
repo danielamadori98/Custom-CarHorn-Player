@@ -2,14 +2,14 @@
 #define MENU_H
 #pragma once
 
-#include "BL.h"
+#include "bluetooth.h"
 #include "display.h"
 #include "player.h"
 
 class Menu{
 	Display display;
 	Player player;
-	BL bl;
+	Bluetooth bluetooth;
 
 	unsigned short actionNumber = 0;
 

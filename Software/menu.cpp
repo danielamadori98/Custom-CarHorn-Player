@@ -58,12 +58,12 @@ void Menu::setup(void){
 	
 void Menu::run(void){
 	if(clacsonListener()){
-		if(actionNumber == MELODY_NUMBER + 1)
+		if(actionNumber >= MELODY_NUMBER + 1)
 			digitalWrite(OUTPUT_CLACSON, HIGH);//Enable normal Clacson 			
-		else if(actionNumber < MELODY_NUMBER)
-			player.play(actionNumber);
+		else if(actionNumber == MELODY_NUMBER)
+			bluetooth.run();
 		else
-			bl.run();
+			player.play(actionNumber);
 
 	}else{
 		digitalWrite(OUTPUT_CLACSON, LOW);//Disable normal Clacson

@@ -3,6 +3,7 @@
 #pragma once
 
 class Display{
+	
 	#define SEGMENT_NUMBER 7
 	#define DIGITS_NUMBER 17
 
