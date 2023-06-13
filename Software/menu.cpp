@@ -1,6 +1,7 @@
 #include <Arduino.h>
 #include "menu.h"
 
+Menu menu;
 
 void Menu::write(unsigned short actionNumberTmp){
 	if(actionNumberTmp < MELODY_NUMBER)

@@ -6,8 +6,6 @@
 #include "display.h"
 #include "player.h"
 
-extern Encoder encoder;
-
 class Menu{
 	Display display;
 	Player player;
@@ -26,5 +24,7 @@ public:
 	
 	void run(void);
 };
+
+extern Menu menu;
 
 #endif

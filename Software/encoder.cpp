@@ -5,6 +5,8 @@
 #define ENCODER_DT 22
 #define ENCODER_SW 21
 
+Encoder encoder;
+
 void Encoder::setup() {
 	pinMode(ENCODER_CLK, INPUT);
 	pinMode(ENCODER_DT, INPUT);

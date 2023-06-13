@@ -16,6 +16,6 @@ public:
 	bool clickListener(void);
 };
 
-Encoder encoder;
+extern Encoder encoder;
 
 #endif

@@ -10,8 +10,6 @@
 #define OUTPUT_CLACSON 31 // define the pin number for OUTPUT_CLACSON
 #define BUZZER 27
 
-extern Encoder encoder;
-
 class Melody{
 public:
 	unsigned int length;
