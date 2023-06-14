@@ -1,6 +1,4 @@
-#include <Arduino.h>
-#include "melody.h"
-
+#include "Melody.h"
 
 Melody::Melody(std::list<int> notes, std::list<int> notesDuration){
 	length = notes.size();

@@ -2,10 +2,10 @@
 #define MELODY_H
 #pragma once
 
-#include "notes.h"
-#include "encoder.h"
-#include "clacson.h"
 #include <list>
+#include "Notes.h"
+#include "Encoder.h"
+#include "Clacson.h"
 
 #define OUTPUT_CLACSON 31 // define the pin number for OUTPUT_CLACSON
 #define BUZZER 27

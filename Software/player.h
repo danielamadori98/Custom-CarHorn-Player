@@ -2,7 +2,7 @@
 #define PLAYER_H
 #pragma once
 
-#include "melody.h"
+#include "Melody.h"
 
 #define MELODY_NUMBER 10
 

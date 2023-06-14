@@ -1,4 +1,4 @@
-#include "player.h"
+#include "Player.h"
 
 void Player::play(unsigned short actionNumber){
 	if(actionNumber < MELODY_NUMBER)

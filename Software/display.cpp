@@ -1,5 +1,4 @@
-#include <Arduino.h>
-#include "display.h"
+#include "Display.h"
 
 void Display::write(unsigned short digit) {
 	if(digit > DIGITS_NUMBER)

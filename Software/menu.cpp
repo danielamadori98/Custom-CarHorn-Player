@@ -1,13 +1,12 @@
-#include <Arduino.h>
-#include "menu.h"
+#include "Menu.h"
 
 Menu menu;
 
-void Menu::write(unsigned short actionNumberTmp){
-	if(actionNumberTmp < MELODY_NUMBER)
-		display.write(actionNumberTmp);
+void Menu::updateDisplay(unsigned short value){
+	if(value < MELODY_NUMBER)
+		display.write(value);
 
-	else if(actionNumberTmp == MELODY_NUMBER)
+	else if(value == MELODY_NUMBER)
 		display.write(11);//B for BL
 
 	else
@@ -34,17 +33,17 @@ short Menu::confirmChoose(){
 void Menu::choose(void){
 	unsigned short actionNumberTmp = encoder.getValue() % MELODY_NUMBER + 2;//Plus BL and normal clason
 
-	display.write(actionNumberTmp);
+	updateDisplay(actionNumberTmp);
 
 	short result = actionNumberTmp < MELODY_NUMBER?
 		player.preview(actionNumberTmp) : confirmChoose();
 
-	if(result == 0)
+	if(result == 0) //Confirm Choose (Melody, BL, Clacson)
 		actionNumber = actionNumberTmp;
-	else if(result == 1)
+	else if(result == 1) //The encoder value changed
 		choose();
 	else
-		display.write(actionNumber);
+		updateDisplay(actionNumber);
 }
 
 void Menu::setup(void){
@@ -56,7 +55,7 @@ void Menu::setup(void){
 }
 
 	
-void Menu::run(void){
+void Menu::idle(void){
 	if(clacsonListener()){
 		if(actionNumber >= MELODY_NUMBER + 1)
 			digitalWrite(OUTPUT_CLACSON, HIGH);//Enable normal Clacson 			

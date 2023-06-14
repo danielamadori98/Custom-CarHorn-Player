@@ -2,6 +2,8 @@
 #define DISPLAY_H
 #pragma once
 
+#include <Arduino.h>
+
 class Display{
 	
 	#define SEGMENT_NUMBER 7

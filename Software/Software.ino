@@ -1,4 +1,4 @@
-#include "menu.h"
+#include "Menu.h"
 
 void setup() {
 	menu.setup();
@@ -6,5 +6,5 @@ void setup() {
 }
 
 void loop() {
-	menu.run();		
+	menu.idle();		
 }

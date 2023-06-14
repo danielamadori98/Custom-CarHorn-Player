@@ -2,9 +2,9 @@
 #define MENU_H
 #pragma once
 
-#include "bluetooth.h"
-#include "display.h"
-#include "player.h"
+#include "Bluetooth.h"
+#include "Display.h"
+#include "Player.h"
 
 class Menu{
 	Display display;
@@ -13,7 +13,7 @@ class Menu{
 
 	unsigned short actionNumber = 0;
 
-	void write(unsigned short actionNumberTmp);
+	void updateDisplay(unsigned short value);
 
 	short confirmChoose(void);
 
@@ -22,7 +22,7 @@ class Menu{
 public:
 	void setup(void);
 	
-	void run(void);
+	void idle(void);
 };
 
 extern Menu menu;

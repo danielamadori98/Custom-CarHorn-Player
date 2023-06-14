@@ -2,12 +2,14 @@
 #define ENCODER_H
 #pragma once
 
+#include <Arduino.h>
+
 class Encoder{
 	unsigned short value = 0;
 	int currentStateCLK, lastStateCLK;
 
 public:
-	void setup();
+	void setup(void);
 
 	unsigned int getValue(void);
 

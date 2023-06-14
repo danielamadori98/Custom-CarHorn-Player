@@ -1,5 +1,4 @@
-#include <Arduino.h>
-#include "encoder.h"
+#include "Encoder.h"
 
 #define ENCODER_CLK 23
 #define ENCODER_DT 22
@@ -7,7 +6,7 @@
 
 Encoder encoder;
 
-void Encoder::setup() {
+void Encoder::setup(void) {
 	pinMode(ENCODER_CLK, INPUT);
 	pinMode(ENCODER_DT, INPUT);
 	pinMode(ENCODER_SW, INPUT_PULLUP);
