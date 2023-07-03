@@ -4,9 +4,9 @@
 
 #include "Notes.h"
 #include "Encoder.h"
-#include "Clacson.h"
+#include "HornButton.h"
 
-#define OUTPUT_CLACSON 19
+#define HORN 19
 #define BUZZER 16
 
 class Melody{

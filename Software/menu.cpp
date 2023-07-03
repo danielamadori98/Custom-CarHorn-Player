@@ -6,14 +6,14 @@ void Menu::updateDisplay(unsigned short value){
 	if(value < MELODY_NUMBER)
 		display.write(value);
 	else
-		display.turnOff();//Off if normal clacson is selected
+		display.turnOff();//Off if normal horn is selected
 }
 
 short Menu::confirmChoose(){
 	unsigned short waitingTime = 5 * 1000; //Seconds
 		
-	//Stop if clacson is pressed!!!
-	while(!clacsonListener() && --waitingTime > 0){
+	//Stop if hornButton is pressed!!!
+	while(!hornButton() && --waitingTime > 0){
 		if(encoder.clickListener())//Stop if encoder confirm the choose
 			return 0;
 
@@ -49,8 +49,8 @@ void Menu::choose(unsigned short melodyNumber){
 }
 
 void Menu::setup(void){
-	pinMode(OUTPUT_CLACSON, OUTPUT);
-	digitalWrite(OUTPUT_CLACSON, LOW);
+	pinMode(HORN, OUTPUT);
+	digitalWrite(HORN, LOW);
 
 	actionNumber = MELODY_NUMBER + 1;
 	
@@ -62,14 +62,14 @@ void Menu::setup(void){
 
 	
 void Menu::idle(void){
-	if(clacsonListener()){
+	if(hornButton()){
 		if(actionNumber >= MELODY_NUMBER)
-			digitalWrite(OUTPUT_CLACSON, HIGH);//Enable normal Clacson
+			digitalWrite(HORN, HIGH);//Enable normal Clacson
 		else
 			player.play(actionNumber);
 
 	}else{
-		digitalWrite(OUTPUT_CLACSON, LOW);//Disable normal Clacson
+		digitalWrite(HORN, LOW);//Disable normal Clacson
 
 		if(encoder.valueListener())
 			choose();

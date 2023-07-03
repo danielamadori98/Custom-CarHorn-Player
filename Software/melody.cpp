@@ -16,18 +16,18 @@ void Melody::play(unsigned short speed, unsigned short pauseBetweenNotes){
 		else
 			i = 0;
 
-		tone(OUTPUT_CLACSON, notes[i], notesDuration[i] * speed);
+		tone(HORN, notes[i], notesDuration[i] * speed);
 		delay(pauseBetweenNotes);
-		noTone(OUTPUT_CLACSON);
+		noTone(HORN);
 
-	}while(clacsonListener());
+	}while(hornButton());
 }
 
 short Melody::preview(unsigned short speed, unsigned short pauseBetweenNotes){
 	unsigned int i = 0;
 
-	//Stop if clacson is pressed!!!
-	while(!clacsonListener() && i < length){
+	//Stop if hornButton is pressed!!!
+	while(!hornButton() && i < length){
 
 		if(encoder.clickListener())// Stop if encoder confirm the melody
 			return 0;
