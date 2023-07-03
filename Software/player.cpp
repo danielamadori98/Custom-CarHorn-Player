@@ -1,4 +1,4 @@
-#include "Player.h"
+#include "Player.hpp"
 
 unsigned short melody0[] = {NOTE_G5, NOTE_F5, NOTE_E5, NOTE_F5};
 unsigned short melodyDuration0[] = {8,8,8,8};

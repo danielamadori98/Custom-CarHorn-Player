@@ -2,9 +2,9 @@
 #define MELODY_H
 #pragma once
 
-#include "Notes.h"
-#include "Encoder.h"
-#include "HornButton.h"
+#include "Notes.hpp"
+#include "Encoder.hpp"
+#include "HornButton.hpp"
 
 #define HORN 19
 #define BUZZER 16

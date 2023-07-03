@@ -3,7 +3,7 @@
 #pragma once
 
 #include "Settings.hpp"
-#include "Menu.h"
+#include "Menu.hpp"
 
 #include <ESPmDNS.h>//ESP8266mDNS
 #include <AsyncTCP.h>//ESPAsyncTCP

@@ -2,8 +2,8 @@
 #define MENU_H
 #pragma once
 
-#include "Display.h"
-#include "Player.h"
+#include "Display.hpp"
+#include "Player.hpp"
 
 class Menu{
 	unsigned short actionNumber;

@@ -1,4 +1,4 @@
-#include "Encoder.h"
+#include "Encoder.hpp"
 
 #define ENCODER_CLK 23
 #define ENCODER_DT 22

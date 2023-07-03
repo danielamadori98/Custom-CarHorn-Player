@@ -1,4 +1,4 @@
-#include "Melody.h"
+#include "Melody.hpp"
 
 Melody::Melody(String name, unsigned short length, unsigned short* notes, unsigned short* notesDuration){
 	this->name = name;
