@@ -1,11 +1,13 @@
 #include "Display.h"
 
+Display display;
+
 void Display::write(unsigned short digit) {
 	if(digit > DIGITS_NUMBER)
 		turnOff();
 	else
-		for (unsigned short segCount = 0; segCount < SEGMENT_NUMBER; ++segCount)
-			digitalWrite(sevSeg[segCount], digits[digit][segCount]);
+		for (unsigned short i = 0; i < SEGMENT_NUMBER; ++i)
+			digitalWrite(pins[i], digits[digit][i]);
 }
 
 void Display::loading(unsigned short repetNumber){
@@ -26,13 +28,11 @@ void Display::loading(unsigned short repetNumber){
 
 void Display::setup(void){
 	for(unsigned short i = 0; i < SEGMENT_NUMBER; i++)
-		pinMode(sevSeg[i], OUTPUT);
-
-	loading(3);
+		pinMode(pins[i], OUTPUT);
 }
 
 
 void Display::turnOff(void){
 	for (unsigned short segCount = 0; segCount < SEGMENT_NUMBER; ++segCount)
-		digitalWrite(sevSeg[segCount], 0);
+		digitalWrite(pins[segCount], 0);
 }

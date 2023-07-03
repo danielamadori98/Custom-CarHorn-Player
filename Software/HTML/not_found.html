@@ -1,0 +1,94 @@
+<!Doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="style.css">
+		<script src="functions.js"></script>
+		<title>Power Strip</title>
+		<meta name="description" content="Power Strip">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="normalize.css">
+		<link rel="stylesheet" href="skeleton.css">
+		<style>
+			.progressbar {
+				width: 40%;
+				margin: 25px auto;
+				border: solid 1px #000;
+			}
+			.progressbar .inner {
+				height: 15px;
+				animation: progressbar-countdown;
+				animation-iteration-count: 1;
+				animation-fill-mode: forwards;
+				animation-play-state: paused;
+				animation-timing-function: linear;
+			}
+			@keyframes progressbar-countdown {
+				0% {
+					width: 0%;
+					background: #00B0FF;
+				}
+				50% {
+					width: 50%;
+					background: #00B0FF;
+				}
+				80% {
+					width: 80%;
+					background: #F00;
+				}
+				100% {
+					width: 100%;
+					background: #F00;
+				}
+			}
+		</style>
+		<script>
+			function startTimer(duration){
+				var timer = duration, seconds;
+				setInterval(function () {
+					seconds = parseInt(timer % 60, 10);
+
+					document.getElementById("timer").innerHTML = seconds;
+					if (--timer < 0) {
+						timer = 0;
+					}
+				}, 1000);
+			}
+
+			function createProgressbar(duration){
+				var progressbar = document.getElementById('progressbar');
+				progressbar.className = 'progressbar';
+
+				var progressbarinner = document.createElement('div');
+				progressbarinner.className = 'inner';
+				progressbarinner.style.animationDuration = duration + 's';
+
+				progressbar.appendChild(progressbarinner);
+				progressbarinner.style.animationPlayState = 'running';
+				
+			}
+
+			window.onload = function () {
+				var duration = 5;
+				startTimer(duration - 1);
+				createProgressbar(duration);
+
+				setTimeout(function() {
+					window.location.href = "index.html";
+				}, duration * 1000);
+			}	
+		</script>
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<div class="twelve columns">
+					<h1 class="header">Page not found</h1>
+					<br>
+					<p class="bold" align='center'>ERROR 404, you will be redirected in <span id="timer">5</span> seconds to <a href='index.html'>index</a></p>
+					<div id='progressbar'></div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

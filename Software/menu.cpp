@@ -5,10 +5,6 @@ Menu menu;
 void Menu::updateDisplay(unsigned short value){
 	if(value < MELODY_NUMBER)
 		display.write(value);
-
-	else if(value == MELODY_NUMBER)
-		display.write(11);//B for BL
-
 	else
 		display.turnOff();//Off if normal clacson is selected
 }
@@ -31,14 +27,14 @@ short Menu::confirmChoose(){
 }
 
 void Menu::choose(void){
-	unsigned short actionNumberTmp = encoder.getValue() % MELODY_NUMBER + 2;//Plus BL and normal clason
+	unsigned short actionNumberTmp = encoder.getValue() % MELODY_NUMBER + 1;//Plus normal clason
 
 	updateDisplay(actionNumberTmp);
 
 	short result = actionNumberTmp < MELODY_NUMBER?
 		player.preview(actionNumberTmp) : confirmChoose();
 
-	if(result == 0) //Confirm Choose (Melody, BL, Clacson)
+	if(result == 0) //Confirm Choose (Melody, Clacson)
 		actionNumber = actionNumberTmp;
 	else if(result == 1) //The encoder value changed
 		choose();
@@ -46,21 +42,29 @@ void Menu::choose(void){
 		updateDisplay(actionNumber);
 }
 
+void Menu::choose(unsigned short melodyNumber){
+	updateDisplay(melodyNumber);
+	player.play(melodyNumber);
+	updateDisplay(actionNumber);
+}
+
 void Menu::setup(void){
 	pinMode(OUTPUT_CLACSON, OUTPUT);
 	digitalWrite(OUTPUT_CLACSON, LOW);
 
-	display.setup();
+	actionNumber = MELODY_NUMBER + 1;
+	
 	player.setup();
+	display.setup();
+
+	updateDisplay(actionNumber);
 }
 
 	
 void Menu::idle(void){
 	if(clacsonListener()){
-		if(actionNumber >= MELODY_NUMBER + 1)
-			digitalWrite(OUTPUT_CLACSON, HIGH);//Enable normal Clacson 			
-		else if(actionNumber == MELODY_NUMBER)
-			bluetooth.run();
+		if(actionNumber >= MELODY_NUMBER)
+			digitalWrite(OUTPUT_CLACSON, HIGH);//Enable normal Clacson
 		else
 			player.play(actionNumber);
 

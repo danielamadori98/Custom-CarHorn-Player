@@ -1,17 +1,10 @@
 #include "Melody.h"
 
-Melody::Melody(std::list<int> notes, std::list<int> notesDuration){
-	length = notes.size();
-
-	this->note = new int[length];
-	this->noteDuration = new int[length];
-
-	std::list<int>::iterator n_it = notes.begin(), nD_it = notesDuration.begin();
-
-	for(unsigned short i = 0; i < length; ++i, ++n_it, ++nD_it){
-		this->note[i] = *n_it;
-		this->noteDuration[i] = *nD_it;
-	}
+Melody::Melody(String name, unsigned short length, unsigned short* notes, unsigned short* notesDuration){
+	this->name = name;
+	this->length = length;
+	this->notes = notes;
+	this->notesDuration = notesDuration;
 }
 	
 void Melody::play(unsigned short speed, unsigned short pauseBetweenNotes){
@@ -23,7 +16,7 @@ void Melody::play(unsigned short speed, unsigned short pauseBetweenNotes){
 		else
 			i = 0;
 
-		tone(OUTPUT_CLACSON, note[i], noteDuration[i] * speed);
+		tone(OUTPUT_CLACSON, notes[i], notesDuration[i] * speed);
 		delay(pauseBetweenNotes);
 		noTone(OUTPUT_CLACSON);
 
@@ -42,7 +35,7 @@ short Melody::preview(unsigned short speed, unsigned short pauseBetweenNotes){
 		if(encoder.valueListener())// Stop if encoder value change
 			return 1;
 
-		tone(BUZZER, note[i], noteDuration[i] * speed);
+		tone(BUZZER, notes[i], notesDuration[i] * speed);
 		delay(pauseBetweenNotes);
 		noTone(BUZZER);
 
@@ -50,4 +43,8 @@ short Melody::preview(unsigned short speed, unsigned short pauseBetweenNotes){
  	}
 
  	return -1;
+}
+
+String Melody::getName(void){
+	return name;
 }

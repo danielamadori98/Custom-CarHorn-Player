@@ -4,7 +4,7 @@
 
 #include <Arduino.h>
 
-#define INPUT_CLACSON 28
+#define INPUT_CLACSON 17
 
 inline bool clacsonListener(void){
 	for(unsigned short i = 0; i < 5; i++){

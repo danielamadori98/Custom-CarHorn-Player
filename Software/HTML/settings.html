@@ -1,0 +1,114 @@
+<!Doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="style.css">
+		<script src="functions.js"></script>
+		<title>Clacson</title>
+		<meta name="description" content="Clacson">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="normalize.css">
+		<link rel="stylesheet" href="skeleton.css">
+	</head>
+	<body>
+		<div id="error"></div>
+	    <nav>
+			<a href="index.html">Player</a>
+			<ul class="nav right">
+				<a href="settings.html">Settings</a>
+			</ul>
+		</nav>
+	    
+		<div class="container">
+			<div class="row">
+				<div class="twelve columns">
+					<h1 class="header">Settings</h1>
+				</div>
+				<form action="index.html" method="POST">
+					<h4>Wi-Fi</h4>
+					<div class="row">
+						<div class="six columns left"> 
+							<label for="ssid">SSID: </label> 
+						</div>
+						<div class="six columns left">
+							<input type="text" value="Wifi Network" id="ssid" name="ssid" maxlength="32" minlength="1"/>
+						</div>
+					</div>
+					<div class="row">
+						<div class="six columns left"> 
+							<label for="pswd">Password: </label>
+							<p>Min. length 8 chars</p>
+						</div>
+						<div class="six columns left">
+							<input type="text" value="Wifi_password1" id="pswd" name="pswd"  maxlength="32" minlength="8"/>
+						</div>
+					</div>
+					<div class="row">
+						<div class="six columns left"> 
+							
+						</div>
+					</div>	
+					<br />
+					<input type="submit" class="button-primary right" value="save" />
+					<br />
+				</form>	
+					
+				<form method='POST' action='/update' enctype='multipart/form-data'>
+					<h4>Update</h4>
+					<p class="bold">Select the .bin file and press upload</p>
+					
+					<input type='file' name='update'>	
+					<input type='submit' class="button-primary right" value='Upload'>
+
+				</form>	
+
+				<br />
+				<a href="#error">
+					<button class="left button-warn" onclick="restart()">restart</button>
+				</a>
+
+				<button class="left margin-left" onclick="reset()">reset</button>
+				
+			</div>
+		</div>
+		
+		<script>
+			function set(e,v){
+				document.getElementById(e).value = v;
+			}
+			function setChecked(e){
+				document.getElementById(e).setAttribute('checked','checked');
+			}
+			function loadSettings(){
+				getResponse("settings.json", function(responseText){
+					var res = JSON.parse(responseText);
+					
+					set("ssid",res.ssid);
+					set("pswd",res.password);
+				});
+			}
+			
+			loadSettings();
+			
+			function restart(){
+				getResponse("restart",function(responseText){},function(){
+					document.getElementById("error").innerHTML = "device is restarting";
+				},1000);
+				
+				setTimeout(function() {
+					window.location.href = "index.html";
+				}, 3000);
+			}
+			
+			function reset(){
+				getResponse("reset",function(responseText){
+					loadSettings();
+				});
+
+				setTimeout(function() {
+					window.location.href = "index.html";
+				}, 1000);
+			}
+		</script>
+	</body>
+</html>

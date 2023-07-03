@@ -19,6 +19,10 @@ public:
 	void play(unsigned short actionNumber);
 
 	bool preview(unsigned short actionNumber);
+
+	Melody *getMelody(unsigned short i);
 };
+
+extern Player player;
 
 #endif

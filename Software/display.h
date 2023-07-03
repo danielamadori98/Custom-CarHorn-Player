@@ -5,13 +5,11 @@
 #include <Arduino.h>
 
 class Display{
-	
 	#define SEGMENT_NUMBER 7
 	#define DIGITS_NUMBER 17
 
-	// Array per i pin dello schermo a 7 segmenti
 	// La numerazione parte dal pin a fino alla g, dal segmento in alto e ruotando in senso orario
-	int sevSeg[SEGMENT_NUMBER] = {1, 2, 3, 4, 5, 6, 7}; // range 8-14
+	int pins[SEGMENT_NUMBER] = {32, 33, 25, 26, 27, 14, 12};//TODO check orfer
 
 	// https://www.hacktronics.com/Tutorials/arduino-and-7-segment-led.html
 	byte digits[DIGITS_NUMBER][SEGMENT_NUMBER] = {
@@ -43,5 +41,7 @@ public:
 
 	void turnOff(void);
 };
+
+extern 	Display display;
 
 #endif

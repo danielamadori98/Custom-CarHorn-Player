@@ -11,7 +11,8 @@ void Encoder::setup(void) {
 	pinMode(ENCODER_DT, INPUT);
 	pinMode(ENCODER_SW, INPUT_PULLUP);
 
-	lastStateCLK = digitalRead(ENCODER_CLK);
+	currentStateCLK = lastStateCLK = digitalRead(ENCODER_CLK);
+	value = 0;
 }
 
 unsigned int Encoder::getValue(void){

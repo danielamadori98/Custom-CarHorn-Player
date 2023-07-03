@@ -2,25 +2,29 @@
 #define MELODY_H
 #pragma once
 
-#include <list>
 #include "Notes.h"
 #include "Encoder.h"
 #include "Clacson.h"
 
-#define OUTPUT_CLACSON 31 // define the pin number for OUTPUT_CLACSON
-#define BUZZER 27
+#define OUTPUT_CLACSON 19
+#define BUZZER 16
 
 class Melody{
-public:
-	unsigned int length;
-	int *note, *noteDuration;
+	unsigned short length;
+	unsigned short *notes, *notesDuration;
+	
+	String name;
 
-	Melody(std::list<int> notes, std::list<int> notesDuration);
+public:
+
+	Melody(String name, unsigned short length, unsigned short* notes, unsigned short* notesDuration);
 	
 	void play(unsigned short speed, unsigned short pauseBetweenNotes);
 
 	short preview(unsigned short speed, unsigned short pauseBetweenNotes);
-};
 
+	String getName(void);
+
+};
 
 #endif
