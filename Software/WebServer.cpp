@@ -155,9 +155,10 @@ void WebServer::begin(void){
 		[](AsyncWebServerRequest *request, String filename, size_t index, uint8_t *data, size_t len, bool final){
 			if(!index){
 				Serial.printf("Update Start: %s\n", filename.c_str());
-				//Update.runAsync(true); //TODO fix (is different for esp32 and esp8266)
-					
-				if(!Update.begin((ESP.getFreeSketchSpace() - 0x1000) & 0xFFFFF000))
+				//Update.runAsync(true); //is just for esp8266)
+				
+				//if(!Update.begin((ESP.getFreeSketchSpace() - 0x1000) & 0xFFFFF000)) //is for esp8266
+				if (!Update.begin(UPDATE_SIZE_UNKNOWN))	// is for esp32
 					Update.printError(Serial);
 					
 			}

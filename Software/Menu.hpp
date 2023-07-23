@@ -26,8 +26,6 @@ public:
 	void idle(void);
 
 	void choose(unsigned short melodyNumber){ // used by WebServer
-		Serial.println(melodyNumber);
-
 		actionNumberWebServer = melodyNumber;
 	}
 };
