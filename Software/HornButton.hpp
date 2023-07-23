@@ -7,13 +7,13 @@
 #define HORN_BUTTON 17
 
 inline bool hornButton(void){
-	for(unsigned short i = 0; i < 5; i++){
+	unsigned char result = 0;
+
+	for(unsigned short i = 0; i < 10; i++)
 		if(digitalRead(HORN_BUTTON) == HIGH)
-			return true;
-
-		delay(1);
-	}
-
+			if(result++ > 3)
+				return true;
+	
 	return false;
 }
 

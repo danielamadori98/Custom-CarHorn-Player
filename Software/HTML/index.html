@@ -25,7 +25,11 @@
 					<h1 class="header">Player</h1>
 				</div>
 				
-				<table id="playlist"></table>
+				<button id="stopButton" class="button-warn" onclick="run(0)">STOP</button>
+
+				<table id="playlist">
+					<tbody></tbody>
+				</table>
 				
 			</div>
 		</div>
@@ -33,9 +37,7 @@
 
 		<script>
 			var res;
-			var table = document.getElementById("playlist");
-			var tbody = document.createElement("tbody");
-			table.appendChild(tbody);
+			var tbody = document.getElementById("playlist").getElementsByTagName('tbody')[0];
 
 			function loadlist() {
 				getResponse("playlist.json", function(responseText) {
@@ -45,12 +47,12 @@
 					var maxColumns = getMaxColumns(buttons);
 
 					var windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-					var maxColumnsPerPage = Math.floor(windowWidth / 150); // 150 è la larghezza approssimativa di una colonna
+					var maxColumnsPerPage = Math.floor(windowWidth / 150); /* 150 è la larghezza approssimativa di una colonna */
 
 					maxColumns = Math.min(maxColumns, maxColumnsPerPage);
 
 					var tableHTML = "";
-					var numRows = Math.ceil(buttons.length / maxColumns);
+					var numRows = Math.ceil(buttons.length / maxColumns);					
 
 					for (var i = 0; i < numRows; i++) {
 						var row = document.createElement("tr");
@@ -60,8 +62,9 @@
 							if (index < buttons.length) {
 								var button = document.createElement("button");
 								button.className = "selectBtn";
+								button.style.padding = "0 5px";
 								button.textContent = buttons[index];
-								button.onclick = run.bind(null, index);
+								button.onclick = run.bind(null, index+1);/* 0 value is used to stop*/
 								var cell = document.createElement("td");
 								cell.appendChild(button);
 								row.appendChild(cell);
@@ -70,17 +73,15 @@
 
 					  tbody.appendChild(row);
 					}
-
-					table.appendChild(tbody);
 				});
 			}
 
-			// Funzione ausiliaria per determinare il numero massimo di colonne in base alla dimensione dei pulsanti
+			/* Funzione ausiliaria per determinare il numero massimo di colonne in base alla dimensione dei pulsanti */
 			function getMaxColumns(buttons) {
 				var maxColumns = 0;
 				for (var i = 0; i < buttons.length; i++) {
-					var buttonWidth = getTextWidth(buttons[i], "selectBtn") + 20; // 20 è la larghezza approssimativa del padding del pulsante
-					var columns = Math.ceil(buttonWidth / 150); // 150 è la larghezza approssimativa di una colonna
+					var buttonWidth = getTextWidth(buttons[i], "selectBtn") + 20; /* 20 è la larghezza approssimativa del padding del pulsante */
+					var columns = Math.ceil(buttonWidth / 150); /* 150 è la larghezza approssimativa di una colonna */
 					
 					if (columns > maxColumns) {
 						maxColumns = columns;
@@ -89,7 +90,7 @@
 				return maxColumns;
 			}
 
-			// Funzione ausiliaria per ottenere la larghezza del testo in un elemento con la classe specificata
+			/* Funzione ausiliaria per ottenere la larghezza del testo in un elemento con la classe specificata */
 			function getTextWidth(text, className) {
 				var span = document.createElement("span");
 				span.className = className;

@@ -6,20 +6,30 @@
 #include "Player.hpp"
 
 class Menu{
-	unsigned short actionNumber;
+	bool choseAgain = false;
+
+	unsigned short actionNumberSelected, actionNumberSelector;//Used for encoder
+
+	unsigned short actionNumberWebServer;
+
+	unsigned long lastActionTime;
 
 	void updateDisplay(unsigned short value);
 
-	short confirmChoose(void);
+	void confirmChoose(void);
 
-	void choose(void);
+	bool choose(void);
 
 public:
 	void setup(void);
-	
-	void choose(unsigned short melodyNumber);
 
 	void idle(void);
+
+	void choose(unsigned short melodyNumber){ // used by WebServer
+		Serial.println(melodyNumber);
+
+		actionNumberWebServer = melodyNumber;
+	}
 };
 
 extern Menu menu;

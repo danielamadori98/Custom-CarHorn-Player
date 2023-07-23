@@ -5,7 +5,7 @@
 #include "Arduino.h"
 #include <EEPROM.h>
 
-#define HOSTNAME "Clacson"
+#define HOSTNAME "Car-Horn"
 #define RECOVERY_PASSWORD "password"
 
 //Memory Addres

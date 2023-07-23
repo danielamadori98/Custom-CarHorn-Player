@@ -3,6 +3,8 @@
 Display display;
 
 void Display::write(unsigned short digit) {
+	Serial.println("Display write");
+
 	if(digit > DIGITS_NUMBER)
 		turnOff();
 	else

@@ -2,6 +2,21 @@
 
 Menu menu;
 
+void Menu::setup(void){
+	pinMode(HORN, OUTPUT);
+	digitalWrite(HORN, LOW);
+
+	actionNumberSelected = actionNumberSelector = MELODY_NUMBER + 1;
+	actionNumberWebServer = 0;
+
+	lastActionTime = millis();
+	
+	player.setup();
+	display.setup();
+
+	updateDisplay(actionNumberSelected);
+}
+
 void Menu::updateDisplay(unsigned short value){
 	if(value < MELODY_NUMBER)
 		display.write(value);
@@ -9,71 +24,76 @@ void Menu::updateDisplay(unsigned short value){
 		display.turnOff();//Off if normal horn is selected
 }
 
-short Menu::confirmChoose(){
-	unsigned short waitingTime = 5 * 1000; //Seconds
-		
-	//Stop if hornButton is pressed!!!
-	while(!hornButton() && --waitingTime > 0){
-		if(encoder.clickListener())//Stop if encoder confirm the choose
-			return 0;
+void Menu::confirmChoose(){
+	if(actionNumberSelector == actionNumberSelected)
+		return;
 
-		if(encoder.valueListener())// Stop if encoder value change
-			return 1;
-
-		delay(1);
+	if(millis() - lastActionTime > 5 * 1000){// 5 Seconds
+		updateDisplay(actionNumberSelected);
+		actionNumberSelected = actionNumberSelector;
+		Serial.println("confirm: time is over (not confirmed)");
+		return;
 	}
 
-	return -1;
+	if(encoder.clickListener()){
+		actionNumberSelected = actionNumberSelector;
+		Serial.println("confirm: Confirmed");
+	}
 }
 
-void Menu::choose(void){
-	unsigned short actionNumberTmp = encoder.getValue() % MELODY_NUMBER + 1;//Plus normal clason
+bool Menu::choose(void){
+	unsigned short tmp = encoder.getValue();
 
-	updateDisplay(actionNumberTmp);
+	if(actionNumberSelector == tmp || actionNumberSelected == tmp)
+		return false;
 
-	short result = actionNumberTmp < MELODY_NUMBER?
-		player.preview(actionNumberTmp) : confirmChoose();
+	actionNumberSelector = tmp;
+	lastActionTime = millis();
+
+	updateDisplay(actionNumberSelector);
+
+	if(actionNumberSelector == MELODY_NUMBER)//If horn is selected
+		return false;
+
+	short result = player.preview(actionNumberSelector);
+	
+	if(result == 1)//if the value is changed again
+		return true;
 
 	if(result == 0) //Confirm Choose (Melody, Clacson)
-		actionNumber = actionNumberTmp;
-	else if(result == 1) //The encoder value changed
-		choose();
-	else
-		updateDisplay(actionNumber);
+		actionNumberSelected = actionNumberSelector;
+
+	return false;
 }
 
-void Menu::choose(unsigned short melodyNumber){
-	updateDisplay(melodyNumber);
-	player.play(melodyNumber);
-	updateDisplay(actionNumber);
-}
 
-void Menu::setup(void){
-	pinMode(HORN, OUTPUT);
-	digitalWrite(HORN, LOW);
-
-	actionNumber = MELODY_NUMBER + 1;
-	
-	player.setup();
-	display.setup();
-
-	updateDisplay(actionNumber);
-}
-
-	
 void Menu::idle(void){
 	if(hornButton()){
-		if(actionNumber >= MELODY_NUMBER)
-			digitalWrite(HORN, HIGH);//Enable normal Clacson
-		else
-			player.play(actionNumber);
+		Serial.print("beep:");
+		Serial.println(actionNumberSelected);
 
-	}else{
-		digitalWrite(HORN, LOW);//Disable normal Clacson
-
-		if(encoder.valueListener())
-			choose();
+		if(actionNumberSelected >= MELODY_NUMBER)
+			digitalWrite(HORN, HIGH);//Enable normal horn
 		else
-			delay(1);
-	}
+			player.play(actionNumberSelected);
+		
+	}else
+		digitalWrite(HORN, LOW);//Disable normal horn
+
+	//Encoder part
+	if(encoder.valueListener() || choseAgain)
+		choseAgain = choose();
+
+	confirmChoose();
+
+	//WebServer part
+	if (actionNumberWebServer == 1)
+		digitalWrite(HORN, HIGH);//Enable normal horn
+	else if(actionNumberWebServer == 0){
+		//stop(); TODO
+		digitalWrite(HORN, LOW);//Disable normal horn
+		actionNumberWebServer = MELODY_NUMBER + 2;
+
+	} else if(actionNumberWebServer < MELODY_NUMBER + 2)//Plus normal horn and stop function
+		player.play(actionNumberWebServer - 2);
 }

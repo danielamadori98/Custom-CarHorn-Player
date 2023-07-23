@@ -4,14 +4,20 @@
 
 #include <Arduino.h>
 
+#define ENCODER_CLK 23
+#define ENCODER_DT 22
+#define ENCODER_SW 21
+
+#include "AiEsp32RotaryEncoder.h"
+
+
 class Encoder{
-	unsigned short value = 0;
-	int currentStateCLK, lastStateCLK;
+unsigned short value = 0;
 
 public:
-	void setup(void);
+	void setup(unsigned short maxValue);
 
-	unsigned int getValue(void);
+	short getValue(void);
 
 	bool valueListener(void);
 

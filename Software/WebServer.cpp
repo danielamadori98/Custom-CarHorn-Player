@@ -57,30 +57,30 @@ void WebServer::begin(void){
 		request->send(request->beginResponse_P(200, "text/html", data_indexHTML, sizeof(data_indexHTML)));
 	});
 	
-	server.on("/list.json", HTTP_GET, [](AsyncWebServerRequest *request) {
-		String output = "{\"list\":[ ";
+	server.on("/playlist.json", HTTP_GET, [](AsyncWebServerRequest *request) {
+		String output = "{\"list\":[ \"Horn\",";
 				
-		for(unsigned short i = 0; i < MELODY_NUMBER; i++)
+		for(unsigned short i = 0; i < MELODY_NUMBER - 1; i++)
 			output += "\"" + player.getMelody(i)->getName() + "\",";
 
-		output += "]}";
+		output += "\"" + player.getMelody(MELODY_NUMBER - 1)->getName() + "\"]}";
+
 		request->send(200, "text/json", output);
 	});
 
 	server.on("/play", HTTP_POST, [](AsyncWebServerRequest *request) {
-		if(request->hasArg("number")) {
-			int melodyNumber = request->arg("number").toInt();
+		int melodyNumber = -1;
 
-			if(melodyNumber >= MELODY_NUMBER)
-				menu.choose((unsigned short)melodyNumber);
-			//else
-				//TODO
-
+		if(request->hasArg("number"))
+			melodyNumber = request->arg("number").toInt();
+		
+		if(melodyNumber < 0 || melodyNumber > MELODY_NUMBER + 1)//Plus normal horn
+			request->send(200, "text/plain", "false");
+		else{
 			request->send(200, "text/plain", "true");
-
+			
+			menu.choose((unsigned short)melodyNumber);			
 		}
-		//TODO
-		request->send(200, "text/plain", "false");
 	});
 
 	server.on("/settings.json", HTTP_GET, [this](AsyncWebServerRequest *request) {
@@ -145,9 +145,9 @@ void WebServer::begin(void){
 
 			AsyncWebServerResponse *response;
 			if(shouldReboot)//if okay
-				response = request->beginResponse(200, "text/html", "<!Doctype html><html><head><meta charset='utf-8'><title>Power Strip</title><meta http-equiv='refresh' content='10;url=http://power_strip.local/' /></head><body><h1 align='center'>Upload done</h1><br><p align='center'>Power Strip is rebooting, please wait 10 seconds, you will be redirected to <a href='http://power_strip.local/'>index</a></p></body></html>");
+				response = request->beginResponse(200, "text/html", "<!Doctype html><html><head><meta charset='utf-8'><title>" + String(HOSTNAME) + "</title><meta http-equiv='refresh' content='10;url=http://" + String(HOSTNAME) + ".local/' /></head><body><h1 align='center'>Upload done</h1><br><p align='center'>The device is rebooting, please wait 10 seconds, you will be redirected to <a href='http://" + String(HOSTNAME) + ".local/'>index</a></p></body></html>");
 			else
-				response = request->beginResponse(200, "text/html", "<!Doctype html><html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=0.8'><title>Power Strip</title></head><body><h1 align='center''>Upload failed</h1><br><p align='center'>Something went wrong, you need to flash the Power Strip manually</p></body></html>");
+				response = request->beginResponse(200, "text/html", "<!Doctype html><html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=0.8'><title>" + String(HOSTNAME) + "</title></head><body><h1 align='center''>Upload failed</h1><br><p align='center'>Something went wrong, you need to flash it manually</p></body></html>");
 			response->addHeader("Connection", "close");
 			request->send(response);
 
