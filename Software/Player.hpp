@@ -4,7 +4,7 @@
 
 #include "Melody.hpp"
 
-#define MELODY_NUMBER 10
+#define MELODY_NUMBER 9
 
 class Player{
 	unsigned short pauseBetweenNotes = 1.30;

@@ -7,14 +7,12 @@ void Menu::setup(void){
 	digitalWrite(HORN, LOW);
 
 	actionNumberSelected = actionNumberSelector = MELODY_NUMBER + 1;
-	actionNumberWebServer = 0;
+	actionNumberWebServer = waitTimeUntilRepeat = 0;
 
 	lastActionTime = millis();
 	
 	player.setup();
 	display.setup();
-
-	updateDisplay(actionNumberSelected);
 }
 
 void Menu::updateDisplay(unsigned short value){
@@ -66,6 +64,24 @@ bool Menu::choose(void){
 	return false;
 }
 
+void Menu::webServerIdle(void){
+	if (actionNumberWebServer == 1){//TODO to fix or remove
+		digitalWrite(HORN, HIGH);//Enable normal horn
+		return;
+	}
+
+	if(actionNumberWebServer == 0){
+		//stop(); TODO
+		actionNumberWebServer = MELODY_NUMBER + 2;
+	
+	} else if(actionNumberWebServer < MELODY_NUMBER + 2 && waitTimeUntilRepeat-- == 0){//Plus normal horn and stop function
+		player.play(actionNumberWebServer - 2);
+		waitTimeUntilRepeat = WAIT_TIME_UNTIL_REPEAT;
+	}
+
+	digitalWrite(HORN, LOW);//Disable normal horn
+}
+
 
 void Menu::idle(void){
 	if(hornButton()){
@@ -75,11 +91,10 @@ void Menu::idle(void){
 		if(actionNumberSelected >= MELODY_NUMBER)
 			digitalWrite(HORN, HIGH);//Enable normal horn
 		else
-			player.play(actionNumberSelected);
-		
+			player.play(actionNumberSelected);	
 	}else
 		digitalWrite(HORN, LOW);//Disable normal horn
-
+	
 	//Encoder part
 	if(encoder.valueListener() || choseAgain)
 		choseAgain = choose();
@@ -87,13 +102,5 @@ void Menu::idle(void){
 	confirmChoose();
 
 	//WebServer part
-	if (actionNumberWebServer == 1)
-		digitalWrite(HORN, HIGH);//Enable normal horn
-	else if(actionNumberWebServer == 0){
-		//stop(); TODO
-		digitalWrite(HORN, LOW);//Disable normal horn
-		actionNumberWebServer = MELODY_NUMBER + 2;
-
-	} else if(actionNumberWebServer < MELODY_NUMBER + 2)//Plus normal horn and stop function
-		player.play(actionNumberWebServer - 2);
+	webServerIdle();
 }

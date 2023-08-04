@@ -3,7 +3,8 @@
 Display display;
 
 void Display::write(unsigned short digit) {
-	Serial.println("Display write");
+	Serial.print("Display write: ");
+	Serial.println(digit);
 
 	if(digit > DIGITS_NUMBER)
 		turnOff();
@@ -36,5 +37,5 @@ void Display::setup(void){
 
 void Display::turnOff(void){
 	for (unsigned short segCount = 0; segCount < SEGMENT_NUMBER; ++segCount)
-		digitalWrite(pins[segCount], 0);
+		digitalWrite(pins[segCount], 1);
 }

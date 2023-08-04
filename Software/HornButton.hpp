@@ -7,6 +7,8 @@
 #define HORN_BUTTON 17
 
 inline bool hornButton(void){
+	return false;//TODO, adding just for test
+	
 	unsigned char result = 0;
 
 	for(unsigned short i = 0; i < 10; i++)
