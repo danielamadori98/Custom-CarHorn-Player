@@ -8,7 +8,7 @@ void setup() {
 	menu.setup();
 
 	wiFiManager.begin();
-	httpServer.begin();//Must be preceded by by wifi.begin()
+	httpServer.begin();//Must be preceded by wifi.begin()
 }
 
 void loop() {
